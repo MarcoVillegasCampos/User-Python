@@ -2,10 +2,10 @@ class Account:
     bankName="Coding Dojo Bank"
     allBankAccounts=[]
 
-    def __init__(self, accountNum, user ):
+    def __init__(self, accountNum, user, balance ):
         self.accountNum=accountNum
         self.user=user
-        self.balance= 0.0
+        self.balance=balance
         Account.allBankAccounts.append(self)
    
        
@@ -19,7 +19,7 @@ class Account:
         return self
     
     def printBalance(self):
-        self.user.printInfo()
+        print(self.balance)
         return self
    
         

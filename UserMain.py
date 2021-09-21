@@ -4,13 +4,16 @@ from User import User
 michaelUser=User("Michael", "Miller",30)
 alvaroUser=User("Alvaro", "Sanchez",35)
 
-michaelAccount= Account(12345, michaelUser)
-michaelAccount=Account(5555,michaelUser)
-alvaroAccount= Account(22222, alvaroUser)
+michaelAccount= Account(12345, michaelUser,1000)
+michaelAccount=Account(5555,michaelUser,2000)
+alvaroAccount= Account(22222, alvaroUser,3000)
 
 
 
-michaelUser.deposit(1000)
+michaelUser.deposit(4000)
+michaelUser.printInfo()
+michaelAccount.printBalance()
+
 
 
 #julieAccount= Account(54321, "Julie Sanders")
