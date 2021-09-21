@@ -15,12 +15,15 @@ class Account:
             print("We cannot process your withdrawal.")
             print(f"You currently have {self.balance}.")
             print(f"And you are trying to withdraw{amount}.")
+        return self
 
     def deposit (self, amount):
         self.balance+= amount
+        return self
     
     def printBalance(self):
         print(f"Account balance: {self.balance}.")
+        return self
 
     def transferMoney (self, amount, account):
         if amount >= self.balance:
@@ -30,6 +33,7 @@ class Account:
         else:
             self.balance -= amount
             account.balance += amount
+        return self
 
     @classmethod
     def changeBankName(cls, newName):
