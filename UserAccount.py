@@ -1,42 +1,31 @@
-class Account:
-    bankName="Coding Dojo Bank"
-    allBankAccounts=[]
+class BankAccount:
+    accounts = []
+    def __init__(self,int_rate,balance):
+        self.int_rate = int_rate
+        self.balance = balance
+        BankAccount.accounts.append(self)
 
-    def __init__(self, accountNum, user, balance ):
-        self.accountNum=accountNum
-        self.user=user
-        self.balance=balance
-        Account.allBankAccounts.append(self)
-   
-       
+    def deposit(self, amount):
+        self.balance += amount
+        return self
 
-    def withdraw (self):
-       self.user.withdraw()
-       return self
-
-    def deposit (self):
-        self.user.deposit()
+    def withdraw(self,amount):
+        if(self.balance - amount) >= 0:
+            self.balance -= amount
+        else:
+            print("Insufficient Funds: Charging a $5 fee")
+            self.balance -= 5
         return self
     
-    def printBalance(self):
-        print(self.balance)
-        return self
-   
-        
+    def display_account_info(self):
+        return f"{self.balance}"
 
-    def transferMoney (self, amount, account):                  #(self, externalAccount, aountToTransfer)
-        if amount >= self.balance:                              #if self.validateFunds ( amountToTransfer)
-            print("We cannot process your transfer.")           # self.withdraw (amountToTransfer)
-            print(f"The origin account has: {self.balance}.")   # externalAccount.deposit (amountToTransfer)
-            print(f"And you are trying to transfer{amount}.")   #else:
-        else:                                                   #print ("You don't have enough funds to transfer.")
-                                                                #using created methods for more consistency
-            self.balance -= amount
-            account.balance += amount
+    def yeild_interest(self):
+        if self.balance > 0:
+            self.balance += (self.balance * self.int_rate)
         return self
-
 
     @classmethod
-    def printAllAccountInfo (cls):
-        for account in cls.allBankAccounts:
-            account.printInfo()
+    def print_all_accounts(cls):
+        for account in cls.accounts:
+            account.display_account_info()
