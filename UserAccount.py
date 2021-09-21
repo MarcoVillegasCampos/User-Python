@@ -2,10 +2,12 @@ class Account:
     bankName="Coding Dojo Bank"
     allBankAccounts=[]
 
-    def __init__(self, accountNum, owner ):
+    def __init__(self, accountNum, user ):
         self.accountNum=accountNum
-        self.owner=owner
+        self.user=user
         self.balance= 0.0
+        Account.allBankAccounts.append(self)
+   
        
 
     def withdraw (self, amount):
@@ -22,15 +24,19 @@ class Account:
         return self
     
     def printBalance(self):
+        self.user.printInfo()
         print(f"Account balance: {self.balance}.")
+        print(f"Account balance: {self.balance}.")
+        
         return self
 
-    def transferMoney (self, amount, account):
-        if amount >= self.balance:
-            print("We cannot process your transfer.")
-            print(f"The origin account has: {self.balance}.")
-            print(f"And you are trying to transfer{amount}.")
-        else:
+    def transferMoney (self, amount, account):                  #(self, externalAccount, aountToTransfer)
+        if amount >= self.balance:                              #if self.validateFunds ( amountToTransfer)
+            print("We cannot process your transfer.")           # self.withdraw (amountToTransfer)
+            print(f"The origin account has: {self.balance}.")   # externalAccount.deposit (amountToTransfer)
+            print(f"And you are trying to transfer{amount}.")   #else:
+        else:                                                   #print ("You don't have enough funds to transfer.")
+                                                                #using created methods for more consistency
             self.balance -= amount
             account.balance += amount
         return self
