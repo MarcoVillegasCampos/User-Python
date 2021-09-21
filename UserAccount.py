@@ -10,25 +10,19 @@ class Account:
    
        
 
-    def withdraw (self, amount):
-        if amount <= self.balance:
-            self.balance -= amount
-        else:
-            print("We cannot process your withdrawal.")
-            print(f"You currently have {self.balance}.")
-            print(f"And you are trying to withdraw{amount}.")
-        return self
+    def withdraw (self):
+       self.user.withdraw()
+       return self
 
-    def deposit (self, amount):
-        self.balance+= amount
+    def deposit (self):
+        self.user.deposit()
         return self
     
     def printBalance(self):
         self.user.printInfo()
-        print(f"Account balance: {self.balance}.")
-        print(f"Account balance: {self.balance}.")
-        
         return self
+   
+        
 
     def transferMoney (self, amount, account):                  #(self, externalAccount, aountToTransfer)
         if amount >= self.balance:                              #if self.validateFunds ( amountToTransfer)
@@ -41,18 +35,8 @@ class Account:
             account.balance += amount
         return self
 
-    @classmethod
-    def changeBankName(cls, newName):
-        cls.bankName=newName
-    
+
     @classmethod
     def printAllAccountInfo (cls):
         for account in cls.allBankAccounts:
             account.printInfo()
-
-    @staticmethod
-    def doesAccountHasMoreThan100 (account):
-        if  account.balance >= 1000:
-            return True
-        else:
-            return False
