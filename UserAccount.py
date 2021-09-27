@@ -1,9 +1,9 @@
-class BankAccount:
+class Account:
     accounts = []
-    def __init__(self,int_rate,balance):
-        self.int_rate = int_rate
+    def __init__(self,interestRate,balance):
+        self.interestRate = interestRate
         self.balance = balance
-        BankAccount.accounts.append(self)
+        Account.accounts.append(self)
 
     def deposit(self, amount):
         self.balance += amount
@@ -17,15 +17,27 @@ class BankAccount:
             self.balance -= 5
         return self
     
-    def display_account_info(self):
+    def display_balance(self):
         return f"{self.balance}"
 
-    def yeild_interest(self):
+    def interest(self):
         if self.balance > 0:
-            self.balance += (self.balance * self.int_rate)
+            self.balance += (self.balance * self.interestRate)
         return self
+    
+    def transferences(self,externalAccount,amount):
+        self.withdraw(amount)
+        externalAccount.deposit(amount)
+        self.display_balance()
+        externalAccount.display_balance()
+      
+        return self.display_balance()
+    
 
     @classmethod
-    def print_all_accounts(cls):
+    def displayAllAccounts(cls):
         for account in cls.accounts:
-            account.display_account_info()
+            account.display_balance()
+            
+            
+            
